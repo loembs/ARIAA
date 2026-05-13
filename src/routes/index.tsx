@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/aria/Layout";
 import { PrestaCard } from "@/components/aria/PrestaCard";
 import { PRESTATIONS } from "@/lib/aria-data";
@@ -6,17 +6,10 @@ import logo from "@/assets/aria-house-logo.jpeg";
 import heroImg from "@/assets/hero-aria.jpg";
 import { Sparkles, Gem, HeartHandshake, Crown, Star, ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-  head: () => ({
-    meta: [
-      { title: "ARIAA HOUSE — L'Excellence Capillaire" },
-      { name: "description", content: "Salon de beauté premium. Pose de perruque, coiffure, soins, tresses. Réservation en ligne." },
-    ],
-  }),
-});
+// Set page title
+document.title = "ARIAA HOUSE — L'Excellence Capillaire";
 
-function Index() {
+export function Index() {
   return (
     <Layout>
       {/* HERO - Luxury Edition */}

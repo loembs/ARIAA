@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import type { Prestation } from "@/lib/aria-data";
 import { Clock, Sparkles, Star } from "lucide-react";
 
@@ -71,8 +71,7 @@ export function PrestaCard({ p, detailed = false }: { p: Prestation; detailed?: 
         </div>
 
         <Link
-          to="/reservation"
-          search={{ service: p.id }}
+          to={`/reservation?service=${p.id}`}
           className="btn-outline-gold label-spaced mt-5 w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg group-hover:bg-gold group-hover:text-primary-foreground transition-all duration-300"
         >
           Réserver cette prestation

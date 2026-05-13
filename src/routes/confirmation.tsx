@@ -1,16 +1,14 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/aria/Layout";
 import { useBooking, bookingStore } from "@/lib/booking-store";
 import { getPrestation, COIFFEUSES } from "@/lib/aria-data";
 import { Check, Mail } from "lucide-react";
 import { useEffect } from "react";
 
-export const Route = createFileRoute("/confirmation")({
-  component: ConfirmationPage,
-  head: () => ({ meta: [{ title: "Confirmation — ARIA HOUSE" }] }),
-});
+// Set page title
+document.title = "Confirmation — ARIA HOUSE";
 
-function ConfirmationPage() {
+export function Confirmation() {
   const booking = useBooking();
   const presta = getPrestation(booking.serviceId);
   const coiffeuse = COIFFEUSES.find((c) => c.id === booking.coiffeuseId);

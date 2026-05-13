@@ -1,19 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/aria/Layout";
 import { PrestaCard } from "@/components/aria/PrestaCard";
 import { PRESTATIONS } from "@/lib/aria-data";
 
-export const Route = createFileRoute("/prestations")({
-  component: PrestationsPage,
-  head: () => ({
-    meta: [
-      { title: "Nos prestations — ARIAA HOUSE" },
-      { name: "description", content: "Découvrez les prestations ARIA HOUSE : pose de perruque, coiffure, soins capillaires, tresses." },
-    ],
-  }),
-});
+// Set page title
+document.title = "Nos prestations — ARIAA HOUSE";
 
-function PrestationsPage() {
+export function Prestations() {
   return (
     <Layout>
       <section className="paper-texture">

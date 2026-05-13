@@ -1,12 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/aria/Layout";
 
-export const Route = createFileRoute("/legal")({
-  component: LegalPage,
-  head: () => ({ meta: [{ title: "Mentions légales & CGV — ARIA HOUSE" }] }),
-});
+// Set page title
+document.title = "Mentions légales & CGV — ARIA HOUSE";
 
-function LegalPage() {
+export function Legal() {
   return (
     <Layout>
       <section className="mx-auto max-w-3xl px-6 py-20">

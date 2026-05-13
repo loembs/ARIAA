@@ -9,32 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ReservationRouteImport } from './routes/reservation'
-import { Route as PrestationsRouteImport } from './routes/prestations'
-import { Route as LegalRouteImport } from './routes/legal'
-import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as IndexRouteImport } from './routes/index'
 
-const ReservationRoute = ReservationRouteImport.update({
-  id: '/reservation',
-  path: '/reservation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrestationsRoute = PrestationsRouteImport.update({
-  id: '/prestations',
-  path: '/prestations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalRoute = LegalRouteImport.update({
-  id: '/legal',
-  path: '/legal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConfirmationRoute = ConfirmationRouteImport.update({
-  id: '/confirmation',
-  path: '/confirmation',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,78 +19,28 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/confirmation': typeof ConfirmationRoute
-  '/legal': typeof LegalRoute
-  '/prestations': typeof PrestationsRoute
-  '/reservation': typeof ReservationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/confirmation': typeof ConfirmationRoute
-  '/legal': typeof LegalRoute
-  '/prestations': typeof PrestationsRoute
-  '/reservation': typeof ReservationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/confirmation': typeof ConfirmationRoute
-  '/legal': typeof LegalRoute
-  '/prestations': typeof PrestationsRoute
-  '/reservation': typeof ReservationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/confirmation' | '/legal' | '/prestations' | '/reservation'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/confirmation' | '/legal' | '/prestations' | '/reservation'
-  id:
-    | '__root__'
-    | '/'
-    | '/confirmation'
-    | '/legal'
-    | '/prestations'
-    | '/reservation'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ConfirmationRoute: typeof ConfirmationRoute
-  LegalRoute: typeof LegalRoute
-  PrestationsRoute: typeof PrestationsRoute
-  ReservationRoute: typeof ReservationRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/reservation': {
-      id: '/reservation'
-      path: '/reservation'
-      fullPath: '/reservation'
-      preLoaderRoute: typeof ReservationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/prestations': {
-      id: '/prestations'
-      path: '/prestations'
-      fullPath: '/prestations'
-      preLoaderRoute: typeof PrestationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal': {
-      id: '/legal'
-      path: '/legal'
-      fullPath: '/legal'
-      preLoaderRoute: typeof LegalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/confirmation': {
-      id: '/confirmation'
-      path: '/confirmation'
-      fullPath: '/confirmation'
-      preLoaderRoute: typeof ConfirmationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -127,10 +53,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ConfirmationRoute: ConfirmationRoute,
-  LegalRoute: LegalRoute,
-  PrestationsRoute: PrestationsRoute,
-  ReservationRoute: ReservationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

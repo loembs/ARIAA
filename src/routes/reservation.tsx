@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { Layout } from "@/components/aria/Layout";
@@ -8,24 +8,13 @@ import { PRESTATIONS, CRENEAUX_HORAIRES, COIFFEUSES, getPrestation } from "@/lib
 import { bookingStore, useBooking, isSlotFull } from "@/lib/booking-store";
 import { Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
-const searchSchema = z.object({
-  service: z.string().optional(),
-  step: z.coerce.number().int().min(1).max(3).optional(),
-});
+// Set page title
+document.title = "Réservation — ARIA HOUSE";
 
-export const Route = createFileRoute("/reservation")({
-  component: ReservationPage,
-  validateSearch: (s) => searchSchema.parse(s),
-  head: () => ({
-    meta: [
-      { title: "Réservation — ARIA HOUSE" },
-      { name: "description", content: "Réservez votre rendez-vous au salon ARIA HOUSE en quelques étapes." },
-    ],
-  }),
-});
-
-function ReservationPage() {
-  const { service, step: stepParam } = Route.useSearch();
+export function Reservation() {
+  const [searchParams] = useSearchParams();
+  const service = searchParams.get('service') || undefined;
+  const stepParam = searchParams.get('step') ? parseInt(searchParams.get('step')!) : undefined;
   const navigate = useNavigate();
   const booking = useBooking();
   const [step, setStep] = useState<1 | 2 | 3>((stepParam as 1 | 2 | 3) || 1);
