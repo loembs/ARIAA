@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build && node scripts/vercel-postbuild.js",
+  "outputDirectory": "dist/client",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!api|assets|_next|_vercel|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
