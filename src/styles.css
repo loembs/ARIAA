@@ -1,0 +1,339 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Raleway", "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-cream: var(--cream);
+  --color-beige: var(--beige);
+  --color-beige-dark: var(--beige-dark);
+  --color-brown: var(--brown);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* ARIA HOUSE palette - Luxury Gold Edition */
+  --cream: oklch(0.957 0.012 70);          /* #F5F0EB */
+  --beige: oklch(0.935 0.013 75);          /* #EDE8E1 */
+  --beige-dark: oklch(0.86 0.018 75);      /* #D9D0C5 */
+  --gold: oklch(0.74 0.085 75);            /* #C9A96E */
+  --gold-light: oklch(0.78 0.09 78);       /* #D4AF6A */
+  --gold-dark: oklch(0.66 0.105 70);       /* #B8933F */
+  --gold-luxe: oklch(0.72 0.12 72);        /* #C99F4E */
+  --brown: oklch(0.32 0.035 55);           /* #4A3728 */
+  --brown-dark: oklch(0.25 0.04 50);       /* #3A2A1D */
+
+  --background: var(--cream);
+  --foreground: var(--brown);
+  --card: oklch(0.985 0.008 70);
+  --card-foreground: var(--brown);
+  --popover: var(--card);
+  --popover-foreground: var(--brown);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.985 0.005 70);
+  --secondary: var(--beige);
+  --secondary-foreground: var(--brown);
+  --muted: var(--beige);
+  --muted-foreground: oklch(0.5 0.025 55);
+  --accent: var(--gold-light);
+  --accent-foreground: var(--brown);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.005 70);
+  --border: var(--beige-dark);
+  --input: var(--beige-dark);
+  --ring: var(--gold);
+
+  --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  --gradient-gold-reverse: linear-gradient(315deg, var(--gold-dark), var(--gold), var(--gold-light));
+  --gradient-gold-horizontal: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+  --gradient-luxe: linear-gradient(135deg, #E8D4A8 0%, #D4AF6A 25%, #B8933F 50%, #C9A96E 75%, #E8D4A8 100%);
+  --gradient-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  --shadow-soft: 0 1px 2px color-mix(in oklab, var(--brown) 6%, transparent),
+                 0 8px 24px -12px color-mix(in oklab, var(--brown) 12%, transparent);
+  --shadow-gold: 0 8px 30px -12px color-mix(in oklab, var(--gold) 45%, transparent);
+  --shadow-glow: 0 0 40px -10px color-mix(in oklab, var(--gold-light) 60%, transparent);
+  --shadow-luxe: 0 20px 60px -15px color-mix(in oklab, var(--gold-luxe) 50%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .label-spaced {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  /* Gold Text Effects */
+  .gold-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gold-text-shimmer {
+    background: var(--gradient-luxe);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  .gold-glow {
+    text-shadow: 0 0 30px color-mix(in oklab, var(--gold-light) 40%, transparent);
+  }
+
+  /* Textures */
+  .paper-texture {
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(color-mix(in oklab, var(--brown) 3%, transparent) 1px, transparent 1px),
+      radial-gradient(color-mix(in oklab, var(--brown) 2%, transparent) 1px, transparent 1px);
+    background-size: 28px 28px, 17px 17px;
+    background-position: 0 0, 9px 9px;
+  }
+  .gold-dust {
+    background-image:
+      radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--gold) 15%, transparent) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--gold-light) 10%, transparent) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, color-mix(in oklab, var(--gold-dark) 8%, transparent) 0%, transparent 40%);
+  }
+  .gold-mesh {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(135deg, var(--gold-light) 0%, transparent 25%),
+      linear-gradient(225deg, var(--gold-light) 0%, transparent 25%),
+      linear-gradient(45deg, var(--gold-light) 0%, transparent 25%),
+      linear-gradient(315deg, var(--gold-light) 0%, transparent 25%);
+    background-position: 10px 0, 10px 0, 0 0, 0 0;
+    background-size: 20px 20px;
+    background-repeat: repeat;
+    opacity: 0.15;
+  }
+
+  /* Decorative Borders */
+  .border-gold-elegant {
+    border: 1px solid var(--gold);
+    position: relative;
+  }
+  .border-gold-elegant::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid var(--gold-light);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .border-gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .border-gold-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--gradient-gold-horizontal);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease-out both; }
+
+  @keyframes fadeScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .fade-scale { animation: fadeScale 0.8s ease-out both; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer-gold {
+    background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 25%, #f6e6c0 50%, var(--gold-light) 75%, var(--gold-dark) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .float { animation: float 4s ease-in-out infinite; }
+
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 40%, transparent); }
+    50% { box-shadow: 0 0 0 15px color-mix(in oklab, var(--gold) 0%, transparent); }
+  }
+  .pulse-gold { animation: pulse-gold 2s ease-out infinite; }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(200%) rotate(25deg); }
+  }
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+  }
+
+  /* Luxury Buttons */
+  .btn-gold-luxe {
+    background: var(--gradient-gold);
+    color: var(--primary-foreground);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-gold);
+  }
+  .btn-gold-luxe:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-luxe), 0 10px 20px -5px color-mix(in oklab, var(--gold-dark) 40%, transparent);
+  }
+  .btn-gold-luxe::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-shimmer);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .btn-gold-luxe:hover::before {
+    opacity: 1;
+  }
+
+  .btn-outline-gold {
+    border: 2px solid var(--gold);
+    color: var(--gold-dark);
+    position: relative;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  .btn-outline-gold:hover {
+    background: var(--gold);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Card Enhancements */
+  .card-luxe {
+    background: var(--card);
+    border: 1px solid var(--beige-dark);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-luxe::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-gold);
+    transition: left 0.5s ease;
+  }
+  .card-luxe:hover::before {
+    left: 0;
+  }
+  .card-luxe:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-luxe);
+    border-color: var(--gold);
+  }
+
+  /* Image Overlays */
+  .img-overlay-gold {
+    position: relative;
+  }
+  .img-overlay-gold::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in oklab, var(--gold) 20%, transparent) 0%, transparent 50%, color-mix(in oklab, var(--gold-dark) 30%, transparent) 100%);
+    pointer-events: none;
+  }
+
+  /* Section Dividers */
+  .section-divider {
+    height: 1px;
+    background: var(--gradient-gold);
+    opacity: 0.3;
+    margin: 0 auto;
+  }
+  .section-divider-wave {
+    height: 40px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 40' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,20 C300,40 600,0 900,20 C1050,30 1150,30 1200,20 L1200,40 L0,40 Z' fill='%23C9A96E' opacity='0.15'/%3E%3C/svg%3E");
+    background-size: cover;
+  }
+}
